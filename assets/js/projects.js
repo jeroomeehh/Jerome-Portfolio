@@ -2,18 +2,18 @@
 const projectsData = [
     {
         "title": "Security Analysis of Automotive Remote Keyless Entry (RKE) Systems",
-        "detailLink": "project1.html",
-        "description": "Engineered a black-box security analysis of a modern Mini Cooper RKE system using Software-Defined Radio (SDR) hardware to capture and reverse-engineer RF communications. Analyzed and demodulated FSK signals and decoded Manchester II data streams. Executed a replay attack that bypassed a 48-bit rolling code system, uncovering a synchronization vulnerability and a denial-of-service (DoS) anti-replay lockout mechanism."
+        "modal": "rke-modal",
+        "description": "Black-box RF security analysis of a Mini Cooper's keyless entry system using SDR hardware. Captured and decoded FSK/Manchester-encoded signals, then executed a replay attack that bypassed the 48-bit rolling code system."
     },
     {
         "title": "Network Exploitation & Device Reverse Engineering on Apple TV",
         "detailLink": "project2.html",
-        "description": "Analyzed wireless network traffic in monitor mode using Wireshark to investigate WPA encryption, and attempted Man-in-the-Middle (MitM) attacks utilizing Bettercap. Performed root-level filesystem analysis by establishing an SSH connection into a jailbroken Apple TV 4, subsequently extracting and reverse-engineering a third-party jailbreak application."
+        "description": "Investigated WPA encryption and MitM attacks on wireless traffic using Wireshark and Bettercap, then SSH'd into a jailbroken Apple TV 4 to extract and reverse-engineer a third-party jailbreak app."
     },
     {
         "title": "Blockchain-Integrated Smart Home IoT Architecture",
         "detailLink": "project3.html",
-        "description": "Architected a decentralized smart home network utilizing Ethereum smart contracts (Solidity) to ensure tamper-proof data integrity and security for connected IoT sensors. Developed a Python-based MQTT-SmartContract bridge and a lightweight Mosquitto broker to facilitate real-time, low-bandwidth communication between the blockchain network and edge devices. Deployed a locally simulated blockchain environment using Ganache and created a dynamic web dashboard utilizing Web3.js for secure user authentication and live device telemetry."
+        "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
         "title": "",
@@ -49,13 +49,18 @@ const projectsData = [
                     return;
                 }
 
-                const detailButton = project.detailLink
-                    ? `<a href="${project.detailLink}" class="button">More Info</a>`
-                    : `<a href="#" class="button disabled" aria-disabled="true">More Info</a>`;
+                let detailButton;
+                if (project.modal) {
+                    detailButton = `<a href="#" class="button" data-modal-target="${project.modal}">More Info</a>`;
+                } else if (project.detailLink) {
+                    detailButton = `<a href="${project.detailLink}" class="button">More Info</a>`;
+                } else {
+                    detailButton = `<a href="#" class="button disabled" aria-disabled="true">More Info</a>`;
+                }
 
                 article.innerHTML = `
                     <h2>${project.title}</h2>
-                    <p>${project.description}</p>
+                    <p class="font-geometric">${project.description}</p>
                     <ul class="actions project-actions">
                         <li>${detailButton}</li>
                     </ul>
@@ -71,4 +76,48 @@ const projectsData = [
     } else {
         loadProjects();
     }
+})();
+
+// Modal handling (delegated so it works for dynamically-created buttons)
+(function() {
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+
+    document.addEventListener('click', function(e) {
+        const trigger = e.target.closest('[data-modal-target]');
+        if (trigger) {
+            e.preventDefault();
+            openModal(trigger.getAttribute('data-modal-target'));
+            return;
+        }
+
+        const closer = e.target.closest('[data-modal-close]');
+        if (closer) {
+            e.preventDefault();
+            closeModal(closer.closest('.modal-overlay'));
+            return;
+        }
+
+        // Click on the overlay background (outside the modal box) closes it
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal(e.target);
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.modal-overlay.active');
+            closeModal(activeModal);
+        }
+    });
 })();

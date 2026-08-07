@@ -9,6 +9,10 @@
 		<title>Jerome Yat Hei Siu</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -103,6 +107,119 @@
 						<ul><li> Jerome Yat Hei Siu</li><li> <a href="#">My Portfolio</a></li></ul>
 					</div>
 
+			</div>
+
+			<!-- Project Modal: Security Analysis of Automotive RKE Systems -->
+			<div id="rke-modal" class="modal-overlay">
+				<div class="modal-box font-geometric">
+					<a href="#" class="modal-close" data-modal-close aria-label="Close">&times;</a>
+
+					<h2>Security Analysis of Automotive Remote Keyless Entry (RKE) Systems</h2>
+
+					<h4>1. Project Overview &amp; Goal</h4>
+					<p><strong>Goal:</strong> To analyze the radio frequency (RF) signals of a car's key fob, searching for potential security flaws in its wireless keyless entry system through hands-on penetration testing.</p>
+					<p><strong>Target System:</strong></p>
+					<ul>
+						<li>Vehicle: 2015 Mini One</li>
+						<li>Key Fob: Standard MINI 3-Button Key Fob</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="RF001"><img src="images/RF001.jpg" alt="Target vehicle and key fob" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>2. Methodology &amp; Tech Stack</h4>
+					<p><strong>Software-Defined Radio (SDR) Hardware:</strong></p>
+					<ul>
+						<li>SDRplay RSP2pro (Used for high-precision signal reception)</li>
+						<li>HackRF One (Used for signal transmission during replay attacks)</li>
+						<li>420MHz Antenna &amp; Custom DIY Copper Antenna</li>
+					</ul>
+					<p><strong>Software &amp; Analysis Tools:</strong></p>
+					<ul>
+						<li>SDRconnect (Used for real-time RF spectrum visualization)</li>
+						<li>Universal Radio Hacker - URH (Used for signal capturing, tweaking, and demodulation)</li>
+					</ul>
+
+					<h4>3. Signal Discovery &amp; Observation</h4>
+					<p><strong>Frequency Identification:</strong></p>
+					<ul>
+						<li>Scanning revealed two distinct transmission frequencies: 433.2 MHz and 434.64 MHz.</li>
+						<li>Dynamic frequency switching was observed based on fob distance/range relative to the car.</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="RF002"><img src="images/RF002.jpg" alt="RF spectrum showing frequency switching" onerror="this.parentElement.style.display='none'"></div>
+
+					<p><strong>Signal Capture &amp; Parameter Tuning:</strong></p>
+					<ul>
+						<li>Captured complex FSK signals using SDRconnect and URH.</li>
+						<li>Optimized signal parameters:
+							<ul>
+								<li>Modulation: Frequency-Shift Keying (FSK)</li>
+								<li>Sample Rate: 2.0M Sps</li>
+								<li>Bandwidth: 500.0K Hz</li>
+								<li>Samples/Symbol: 60</li>
+								<li>Bits/Symbol: 1</li>
+							</ul>
+						</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="RF003"><img src="images/RF003.jpg" alt="Signal capture and parameter tuning in URH" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>4. Signal Demodulation &amp; Reverse Engineering</h4>
+					<p><strong>Bitstream Analysis:</strong></p>
+					<ul>
+						<li>Total Signal Length: 689 bits</li>
+						<li>Preamble/Pattern: Starts with '011111', followed by alternating '01...01' bits.</li>
+						<li>Encoding Scheme: Manchester II encoding (verified via FCC documentation).</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="RF004"><img src="images/RF004.jpg" alt="Bitstream analysis" onerror="this.parentElement.style.display='none'"></div>
+
+					<p><strong>Decoded Data Frame Structure (341 Bits Decoded):</strong></p>
+					<ul>
+						<li>Bytes 55-66: Constant unique identifier (Device ID / Car ID).</li>
+						<li>Byte 67: Function command code (e.g., 1 = Lock, 2 = Unlock, 3 = Boot).</li>
+						<li>Bytes 73-74: Rolling code counter (increments by 1 on every button press).</li>
+						<li>Bytes 75-86: Dynamic cryptographic authentication payload (rolling code authentication).</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="RF005"><img src="images/RF005.jpg" alt="Decoded data frame structure" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>5. Security Exploits &amp; Demonstration</h4>
+					<p><strong>Exploit 1: Successful Replay Attack (High Risk)</strong></p>
+					<ul>
+						<li>Captured a valid unlock signal while the key fob was out of range of the car.</li>
+						<li>Replayed the captured signal using the HackRF One via Universal Radio Hacker.</li>
+						<li>Result: The initial replayed signal successfully unlocked the car doors.</li>
+					</ul>
+					<p><strong>Exploit 2: Denial-of-Service (DoS) Attack (Low Risk)</strong></p>
+					<ul>
+						<li>Repeatedly transmitting the replayed signal forces the vehicle's receiver and key fob out of sync.</li>
+						<li>Result: The car locks out the replayed signal and completely deactivates the legitimate key fob.</li>
+					</ul>
+
+					<h4>6. Vehicle Defense &amp; Threat Mitigation</h4>
+					<p><strong>Automotive Countermeasures Observed:</strong></p>
+					<ul>
+						<li>Upon detecting repeated invalid/replayed signals, the car disabled the legitimate key fob.</li>
+						<li>Resynchronization required unlocking the car using the physical backup key and initializing the ignition.</li>
+					</ul>
+					<p><strong>Recommended Mitigation Strategy:</strong></p>
+					<ul>
+						<li>Implement Bidirectional Communication with Acknowledgement (ACK):
+							<ul>
+								<li>The key fob should only advance its internal rolling counter after receiving an encrypted ACK signal from the vehicle confirming command execution.</li>
+								<li>Prevents counter desynchronization and mitigates RollJam / replay attack windows.</li>
+							</ul>
+						</li>
+					</ul>
+
+					<h4>7. Possible Future Work</h4>
+					<ul>
+						<li>Chip-Level Decoding: Attempting to decipher the authentication code logic on the key fob's microcontroller.</li>
+						<li>RollJam Attack Replication:
+							<ul>
+								<li>Jam the RF frequency preventing the signal from reaching the car.</li>
+								<li>Capture the fresh, unused rolling code signal during the jamming sequence.</li>
+								<li>Replay the captured signal to gain unauthorized entry at a later time.</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 
 		<!-- Scripts -->

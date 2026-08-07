@@ -4736,3 +4736,120 @@ input, select, textarea {
 		cursor: default;
 	}
 
+
+/* Project detail modal */
+body.modal-open {
+	overflow: hidden;
+}
+
+.modal-overlay {
+	display: none;
+	position: fixed;
+	z-index: 10000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 3rem 1.5rem;
+	background: rgba(20, 20, 20, 0.85);
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+	.modal-overlay.active {
+		display: block;
+	}
+
+	.modal-box {
+		position: relative;
+		max-width: 55rem;
+		margin: 0 auto;
+		padding: 2.5rem 3rem;
+		background: #fff;
+		border-radius: 0.5rem;
+		box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.35);
+		color: #444;
+	}
+
+		.modal-box h2 {
+			margin-bottom: 1.5rem;
+			font-size: 1.5em;
+			color: #222;
+		}
+
+		.modal-box h4 {
+			margin: 2rem 0 0.75rem 0;
+			padding-top: 1rem;
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			font-size: 1.1em;
+			color: #222;
+		}
+
+		.modal-box h4:first-of-type {
+			margin-top: 0;
+			padding-top: 0;
+			border-top: none;
+		}
+
+		.modal-box p {
+			margin: 0 0 0.75rem 0;
+		}
+
+		.modal-box ul {
+			margin: 0 0 1rem 0;
+			padding-left: 1.25rem;
+			list-style: disc;
+		}
+
+			.modal-box ul ul {
+				margin-top: 0.4rem;
+				margin-bottom: 0.4rem;
+			}
+
+		.modal-box .modal-img-placeholder {
+			margin: 1rem 0 1.5rem 0;
+		}
+
+			.modal-box .modal-img-placeholder img {
+				max-width: 100%;
+				border-radius: 0.35rem;
+				display: block;
+			}
+
+		.modal-close {
+			position: absolute;
+			top: 0.75rem;
+			right: 1rem;
+			font-size: 2rem;
+			line-height: 1;
+			color: #888;
+			text-decoration: none;
+		}
+
+			.modal-close:hover {
+				color: #222;
+			}
+
+	@media screen and (max-width: 736px) {
+		.modal-overlay {
+			padding: 1.5rem 0.75rem;
+		}
+
+		.modal-box {
+			padding: 2rem 1.25rem;
+		}
+	}
+
+/* Geometric sans-serif text (project description + modal intro) */
+.font-geometric {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: calc(1rem + 1pt);
+	line-height: 1.6;
+	text-align: left;
+}
+
+	.font-geometric p,
+	p.font-geometric {
+		margin: 0 0 1rem 0;
+		text-align: left;
+	}
