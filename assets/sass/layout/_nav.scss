@@ -42,6 +42,10 @@
 					display: block;
 					padding-left: 0;
 
+					&.social {
+						margin-left: auto;
+					}
+
 					a {
 						@include vendor('transition', (
 							'background-color #{_duration(transition)} ease-in-out',
@@ -55,6 +59,12 @@
 						&:hover {
 							color: inherit !important;
 							background-color: transparentize(_palette(invert, fg), 0.9);
+						}
+
+						&.icon {
+							&:before {
+								margin-right: 0.5em;
+							}
 						}
 					}
 

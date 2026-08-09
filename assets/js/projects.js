@@ -6,8 +6,8 @@ const projectsData = [
         "description": "Black-box RF security analysis of a Mini Cooper's keyless entry system using SDR hardware. Captured and decoded FSK/Manchester-encoded signals, then executed a replay attack that bypassed the 48-bit rolling code system."
     },
     {
-        "title": "Network Exploitation & Device Reverse Engineering on Apple TV",
-        "detailLink": "project2.html",
+        "title": "Network Exploitation & Reverse Engineering on Apple TV",
+        "detailLink": "google.html",
         "description": "Investigated WPA encryption and MitM attacks on wireless traffic using Wireshark and Bettercap, then SSH'd into a jailbroken Apple TV 4 to extract and reverse-engineer a third-party jailbreak app."
     },
     {
@@ -16,10 +16,22 @@ const projectsData = [
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
-        "title": "",
-        "dummy": true,
-        "description": ""
+        "title": "Gym Tracker Mobile Application",
+        "detailLink": "project3.html",
+        "description": "Designed an end-to-end embedded systems solution, and a mobile application that turns a wearable Arduino board into a real-time workout tracker."
+    },
+    {
+        "title": "University Attendance Code Cracking Python Application",
+        "detailLink": "project3.html",
+        "description": "Built in Year 2, A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
+    },
+    {
+        "title": "3D Web-Based Interactive Application",
+        "detailLink": "project3.html",
+        "description": "A web-based interactive 3D product viewer built for a Mobile Web 3D Applications module. The app displays X3D models of Coca-Cola, Sprite, and Fanta with camera controls, texture/lighting toggles, and animations, alongside a dynamic image gallery and video content."
     }
+    
+    
 ];
 
 // Load and render projects dynamically

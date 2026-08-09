@@ -3705,6 +3705,10 @@ input, select, textarea {
 				padding-left: 0;
 			}
 
+				#nav ul.links li.social {
+					margin-left: auto;
+				}
+
 				#nav ul.links li a {
 					-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 					-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -3719,6 +3723,10 @@ input, select, textarea {
 					#nav ul.links li a:hover {
 						color: inherit !important;
 						background-color: rgba(255, 255, 255, 0.1);
+					}
+
+					#nav ul.links li a.icon:before {
+						margin-right: 0.5em;
 					}
 
 				#nav ul.links li.active {
