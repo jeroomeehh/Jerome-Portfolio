@@ -4606,6 +4606,10 @@ input, select, textarea {
 					text-transform: uppercase;
 				}
 
+					#navPanel .links li a.icon:before {
+						margin-right: 0.5em;
+					}
+
 				#navPanel .links li:first-child {
 					border-top: 0;
 				}

@@ -16,7 +16,7 @@ const projectsData = [
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
-        "title": "University Attendance Code Cracking Python Application",
+        "title": "University Attendance Code Cracker - Python Application",
         "detailLink": "project3.html",
         "description": "Built in Year 2, A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
     },
