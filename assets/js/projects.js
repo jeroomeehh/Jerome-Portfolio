@@ -16,19 +16,27 @@ const projectsData = [
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
-        "title": "Gym Tracker Mobile Application",
-        "detailLink": "project3.html",
-        "description": "Designed an end-to-end embedded systems solution, and a mobile application that turns a wearable Arduino board into a real-time workout tracker."
-    },
-    {
         "title": "University Attendance Code Cracking Python Application",
         "detailLink": "project3.html",
         "description": "Built in Year 2, A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
     },
     {
+        "title": "Mobile Ubiquitous Gym Tracker Application",
+        "detailLink": "project3.html",
+        "description": "Designed an end-to-end embedded systems solution, and a mobile application that turns a wearable Arduino board into a real-time workout tracker."
+    },
+    {
         "title": "3D Web-Based Interactive Application",
         "detailLink": "project3.html",
         "description": "A web-based interactive 3D product viewer built for a Mobile Web 3D Applications module. The app displays X3D models of Coca-Cola, Sprite, and Fanta with camera controls, texture/lighting toggles, and animations, alongside a dynamic image gallery and video content."
+    },
+    {
+        "title": "Settlers 2D - Unity Game Development ",
+        "detailLink": "project3.html",
+        "description": "A 2D digital recreation of the classic Settlers of Catan board game, built in Unity as a team project. The prototype implements a full hex-grid board, turn-based gameplay, resource trading, building/upgrading, and a development card system, with local multiplayer support for up to 4 players."
+    },
+    {
+        "dummy": true
     }
     
     
