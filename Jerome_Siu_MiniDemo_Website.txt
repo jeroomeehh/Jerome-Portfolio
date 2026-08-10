@@ -69,6 +69,7 @@ Exploit 1: Successful Replay Attack (High Risk)
 - Replayed the captured signal using the HackRF One via Universal Radio Hacker.
 - Result: The initial replayed signal successfully unlocked the car doors.
 
+Video:RF006.mp4
 Exploit 2: Denial-of-Service (DoS) Attack (Low Risk)
 - Repeatedly transmitting the replayed signal forces the vehicle's receiver and key fob out of sync.
 - Result: The car locks out the replayed signal and completely deactivates the legitimate key fob.

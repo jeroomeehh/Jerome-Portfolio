@@ -122,7 +122,7 @@
 						<li>Vehicle: 2015 Mini One</li>
 						<li>Key Fob: Standard MINI 3-Button Key Fob</li>
 					</ul>
-					<div class="modal-img-placeholder" data-img="RF001"><img src="images/RF001.jpg" alt="Target vehicle and key fob" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder modal-img-small" data-img="RF000"><img src="images/RF000.png" alt="Target vehicle and key fob" onerror="this.parentElement.style.display='none'"></div>
 
 					<h4>2. Methodology &amp; Tech Stack</h4>
 					<p><strong>Software-Defined Radio (SDR) Hardware:</strong></p>
@@ -143,7 +143,7 @@
 						<li>Scanning revealed two distinct transmission frequencies: 433.2 MHz and 434.64 MHz.</li>
 						<li>Dynamic frequency switching was observed based on fob distance/range relative to the car.</li>
 					</ul>
-					<div class="modal-img-placeholder" data-img="RF002"><img src="images/RF002.jpg" alt="RF spectrum showing frequency switching" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder" data-img="RF001"><img src="images/RF001.png" alt="RF spectrum showing frequency switching" onerror="this.parentElement.style.display='none'"></div>
 
 					<p><strong>Signal Capture &amp; Parameter Tuning:</strong></p>
 					<ul>
@@ -158,7 +158,8 @@
 							</ul>
 						</li>
 					</ul>
-					<div class="modal-img-placeholder" data-img="RF003"><img src="images/RF003.jpg" alt="Signal capture and parameter tuning in URH" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder" data-img="RF002"><img src="images/RF002.png" alt="Signal capture and parameter tuning in URH" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder" data-img="RF003"><img src="images/RF003.png" alt="Signal capture and parameter tuning in URH" onerror="this.parentElement.style.display='none'"></div>
 
 					<h4>4. Signal Demodulation &amp; Reverse Engineering</h4>
 					<p><strong>Bitstream Analysis:</strong></p>
@@ -167,7 +168,7 @@
 						<li>Preamble/Pattern: Starts with '011111', followed by alternating '01...01' bits.</li>
 						<li>Encoding Scheme: Manchester II encoding (verified via FCC documentation).</li>
 					</ul>
-					<div class="modal-img-placeholder" data-img="RF004"><img src="images/RF004.jpg" alt="Bitstream analysis" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder" data-img="RF004"><img src="images/RF004.png" alt="Bitstream analysis" onerror="this.parentElement.style.display='none'"></div>
 
 					<p><strong>Decoded Data Frame Structure (341 Bits Decoded):</strong></p>
 					<ul>
@@ -176,7 +177,7 @@
 						<li>Bytes 73-74: Rolling code counter (increments by 1 on every button press).</li>
 						<li>Bytes 75-86: Dynamic cryptographic authentication payload (rolling code authentication).</li>
 					</ul>
-					<div class="modal-img-placeholder" data-img="RF005"><img src="images/RF005.jpg" alt="Decoded data frame structure" onerror="this.parentElement.style.display='none'"></div>
+					<div class="modal-img-placeholder" data-img="RF005"><img src="images/RF005.png" alt="Decoded data frame structure" onerror="this.parentElement.style.display='none'"></div>
 
 					<h4>5. Security Exploits &amp; Demonstration</h4>
 					<p><strong>Exploit 1: Successful Replay Attack (High Risk)</strong></p>
@@ -185,6 +186,8 @@
 						<li>Replayed the captured signal using the HackRF One via Universal Radio Hacker.</li>
 						<li>Result: The initial replayed signal successfully unlocked the car doors.</li>
 					</ul>
+					<div class="modal-img-placeholder" data-img="RF006"><video src="images/RF006.mp4" controls playsinline muted loop onerror="this.parentElement.style.display='none'">Your browser does not support the video tag.</video></div>
+
 					<p><strong>Exploit 2: Denial-of-Service (DoS) Attack (Low Risk)</strong></p>
 					<ul>
 						<li>Repeatedly transmitting the replayed signal forces the vehicle's receiver and key fob out of sync.</li>
