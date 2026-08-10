@@ -3875,6 +3875,11 @@ input, select, textarea {
 				border-style: solid;
 				border-top-width: 2px;
 				text-align: center;
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				flex-direction: column;
 			}
 
 				#main > .posts > article > :last-child {
@@ -4738,7 +4743,8 @@ input, select, textarea {
 
 /* Project action buttons */
 #main > .posts > article .project-actions {
-	margin-top: 1rem;
+	margin-top: auto;
+	padding-top: 1rem;
 	justify-content: center;
 }
 
@@ -4746,6 +4752,46 @@ input, select, textarea {
 		opacity: 0.5;
 		pointer-events: none;
 		cursor: default;
+	}
+
+#main > .posts > article.clickable-card {
+	cursor: pointer;
+	transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+	#main > .posts > article.clickable-card:hover {
+		background-color: rgba(255, 255, 255, 0.04);
+		transform: translateY(-6px);
+		box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+		border-color: #18bfef;
+		z-index: 1;
+	}
+
+	#main > .posts > article.clickable-card:active {
+		transform: translateY(-2px);
+	}
+
+	#main > .posts > article.clickable-card .project-actions a {
+		position: relative;
+		z-index: 2;
+	}
+
+	#main > .posts > article .github-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-top: 1rem;
+		font-size: 0.8rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: #18bfef;
+		opacity: 0.75;
+		transition: opacity 0.25s ease, transform 0.25s ease;
+	}
+
+	#main > .posts > article.clickable-card:hover .github-hint {
+		opacity: 1;
+		transform: translateX(4px);
 	}
 
 
@@ -4817,6 +4863,19 @@ body.modal-open {
 				margin-top: 0.4rem;
 				margin-bottom: 0.4rem;
 			}
+
+		.modal-box ol {
+			margin: 0 0 1rem 0;
+			padding-left: 1.25rem;
+			list-style: decimal;
+		}
+
+		.modal-box code {
+			background: rgba(0, 0, 0, 0.06);
+			padding: 0.1em 0.4em;
+			border-radius: 0.25em;
+			font-size: 0.9em;
+		}
 
 		.modal-box .modal-img-placeholder {
 			margin: 1rem 0 1.5rem 0;
