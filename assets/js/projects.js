@@ -19,17 +19,17 @@ const projectsData = [
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
+        "title": "University Attendance Code Cracker - Python Application",
+        "modal": "attendance-modal",
+        "githubLink": "https://github.com/jeroomeehh/University-Attendance-Code-Cracker",
+        "description": "Built in second year. A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
+    },
+    {
         "title": "3D Web-Based Interactive Application",
         "githubLink": "https://github.com/jeroomeehh/3D-Web-Application-using-X3D-X3DOM",
         "demoLink": "https://jeroomeehh.github.io/3D-Web-Application-using-X3D-X3DOM/",
         "demoLabel": "3D Model Demo",
         "description": "A web-based interactive 3D product viewer built for a Mobile Web 3D Applications module. The app displays X3D models of Coca-Cola, Sprite, and Fanta with camera controls, texture/lighting toggles, and animations, alongside a dynamic image gallery and video content."
-    },
-    {
-        "title": "University Attendance Code Cracker - Python Application",
-        "modal": "attendance-modal",
-        "githubLink": "https://github.com/jeroomeehh/University-Attendance-Code-Cracker",
-        "description": "Built in Year 2, A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
     },
     {
         "title": "Mobile Ubiquitous Gym Tracker Application",
