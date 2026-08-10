@@ -224,6 +224,116 @@
 				</div>
 			</div>
 
+			<!-- Project Modal: Blockchain-Integrated Smart Home IoT Architecture -->
+			<div id="smarthome-modal" class="modal-overlay">
+				<div class="modal-box font-geometric">
+					<a href="#" class="modal-close" data-modal-close aria-label="Close">&times;</a>
+
+					<h2>Build An Internet of Things Application with Blockchain – Smart Home</h2>
+
+					<h4>1. Project Overview &amp; Goal</h4>
+					<p><strong>Goal:</strong> To design and build a smart home application that combines Internet of Things (IoT) technology with Blockchain, using a decentralised ledger to keep device data secure, tamper-proof and transparent while delivering everyday home automation.</p>
+					<p><strong>Core Concept:</strong></p>
+					<ul>
+						<li>IoT devices capture real-time data (e.g. temperature, device on/off state).</li>
+						<li>Data travels over MQTT and is permanently recorded on an Ethereum blockchain.</li>
+						<li>Smart contracts interpret the data and trigger predefined automated actions.</li>
+						<li>A web dashboard lets users control devices, build "Scenes" and schedule routines.</li>
+					</ul>
+
+					<h4>2. Methodology &amp; Tech Stack</h4>
+					<p><strong>Blockchain &amp; Smart Contracts:</strong></p>
+					<ul>
+						<li>Ethereum (smart-contract platform for tamper-proof data storage)</li>
+						<li>Ganache v2.7.1 (local in-memory blockchain; 12-second block time to mirror Ethereum's Proof-of-Stake)</li>
+						<li>Solidity v0.5.16, compiled with Truffle v5.11.5</li>
+					</ul>
+					<p><strong>Communication Layer:</strong></p>
+					<ul>
+						<li>MQTT (lightweight publish/subscribe protocol ideal for IoT)</li>
+						<li>Mosquitto v2.0.18 broker (port 1883 for MQTT, port 8081 for WebSockets)</li>
+					</ul>
+					<p><strong>Back-End (Python):</strong></p>
+					<ul>
+						<li>MQTT–Smart Contract Bridge: stores incoming messages on-chain and publishes automated action messages.</li>
+						<li>Scene Timer: checks scene schedules every whole minute and fires scene messages.</li>
+					</ul>
+					<p><strong>Front-End:</strong></p>
+					<ul>
+						<li>HTML, CSS and JavaScript dashboard</li>
+						<li>Web3.js for browser-to-Ethereum interaction</li>
+						<li>Open-Meteo &amp; OpenStreetMap APIs for live weather and location</li>
+					</ul>
+					<p><strong>IoT Hardware &amp; Devices:</strong></p>
+					<ul>
+						<li>ESP8266 Wi-Fi module driving a real dimmable LED bulb (Arduino firmware)</li>
+						<li>Virtual sensors, heaters and lamps built in HTML/JavaScript for testing</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="SH001"><img src="images/SH001.png" alt="System architecture diagram" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>3. System Architecture</h4>
+					<p><strong>Data Flow:</strong></p>
+					<ul>
+						<li>IoT devices publish/subscribe to the Mosquitto MQTT broker.</li>
+						<li>From the broker, data splits to two Python back-ends.</li>
+						<li>Back-end 1 bridges MQTT to the blockchain, storing each device's messages in its own smart contract and checking them against automation rules.</li>
+						<li>Back-end 2 acts as a timer handler, triggering scheduled scenes.</li>
+						<li>The HTML/JavaScript front-end connects to both back-ends and to the blockchain, giving real-time control, history and scheduling.</li>
+						<li>All data is stored on the Ganache blockchain.</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="SH002"><img src="images/SH002.jpg" alt="Data flow between IoT devices, back-ends and blockchain" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>4. Smart Contract Design</h4>
+					<p>Four Solidity contracts form the backbone of the system:</p>
+					<ul>
+						<li>SmartHome: central registry of every IoT device (name + contract address), with a deletion flag that preserves historical records.</li>
+						<li>IoTdevice: one per device; logs timestamped messages and manages upper/lower thresholds that trigger automated alerts or actions.</li>
+						<li>SceneList: manages the collection of scenes and their on/off timers, including repeat scheduling by day of the week.</li>
+						<li>Scene: groups multiple devices and their control messages so they can be activated together with a single command.</li>
+					</ul>
+
+					<h4>5. Key Features &amp; Demonstration</h4>
+					<p><strong>Core Features:</strong></p>
+					<ul>
+						<li>User authentication for secure access.</li>
+						<li>Add, control, remove and recover IoT devices.</li>
+						<li>Device history logging on the blockchain (tamper-proof audit trail).</li>
+						<li>Threshold-based automation (e.g. switch on the heater when temperature drops).</li>
+						<li>Scene creation and management (control many devices at once).</li>
+						<li>Countdown timers and scheduled/repeating scene activation.</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="SH003"><img src="images/SH003.jpg" alt="Dashboard showing core smart home features" onerror="this.parentElement.style.display='none'"></div>
+
+					<p><strong>Live Demonstration:</strong></p>
+					<ul>
+						<li>A real ESP8266 LED bulb was connected to the system and dimmed / switched via the dashboard, with every command routed through the blockchain network.</li>
+						<li>A virtual temperature sensor triggered an electric heater automatically once readings crossed the configured threshold.</li>
+					</ul>
+					<div class="modal-img-placeholder" data-img="SH004"><img src="images/SH004.jpg" alt="Live demonstration of ESP8266 bulb and virtual heater automation" onerror="this.parentElement.style.display='none'"></div>
+
+					<h4>6. Testing &amp; Evaluation</h4>
+					<p><strong>Unit Testing:</strong></p>
+					<ul>
+						<li>Requirement-based test cases covering authentication, device management, control, automation, scenes and timers.</li>
+						<li>Result: 100% pass (19/19 test cases produced the expected output).</li>
+					</ul>
+					<p><strong>Usability Testing:</strong></p>
+					<ul>
+						<li>Participants completed all tasks (add devices, control, automate, build scenes, set timers) and found the interface intuitive and user-friendly.</li>
+						<li>Feedback focused on visual polish (modern UI, brightness slider, on-screen clock, clearer timer setup) rather than functional faults.</li>
+					</ul>
+
+					<h4>7. Possible Future Work</h4>
+					<ul>
+						<li>Integrate a wider range of real IoT devices for richer automation.</li>
+						<li>Explore alternative blockchains with faster, cheaper transactions.</li>
+						<li>Add advanced cryptographic techniques to further strengthen data privacy.</li>
+						<li>Investigate hybrid public/private blockchain models to balance performance and security.</li>
+						<li>Adopt a modular design to improve scalability as devices and users grow.</li>
+					</ul>
+				</div>
+			</div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>

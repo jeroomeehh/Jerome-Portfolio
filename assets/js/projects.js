@@ -7,32 +7,30 @@ const projectsData = [
     },
     {
         "title": "Network Exploitation & Reverse Engineering on Apple TV",
-        "detailLink": "google.html",
+        "modal": "appletv-modal",
         "description": "Investigated WPA encryption and MitM attacks on wireless traffic using Wireshark and Bettercap, then SSH'd into a jailbroken Apple TV 4 to extract and reverse-engineer a third-party jailbreak app."
     },
     {
         "title": "Blockchain-Integrated Smart Home IoT Architecture",
-        "detailLink": "project3.html",
+        "modal": "smarthome-modal",
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
         "title": "University Attendance Code Cracker - Python Application",
-        "detailLink": "project3.html",
+        "githubLink": "https://github.com/jeroomeehh/University-Attendance-Code-Cracker",
         "description": "Built in Year 2, A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
     },
     {
         "title": "Mobile Ubiquitous Gym Tracker Application",
-        "detailLink": "project3.html",
         "description": "Designed an end-to-end embedded systems solution, and a mobile application that turns a wearable Arduino board into a real-time workout tracker."
     },
     {
         "title": "3D Web-Based Interactive Application",
-        "detailLink": "project3.html",
+        "githubLink": "https://github.com/jeroomeehh/3D-Web-Application-using-X3D-X3DOM",
         "description": "A web-based interactive 3D product viewer built for a Mobile Web 3D Applications module. The app displays X3D models of Coca-Cola, Sprite, and Fanta with camera controls, texture/lighting toggles, and animations, alongside a dynamic image gallery and video content."
     },
     {
         "title": "Settlers 2D - Unity Game Development ",
-        "detailLink": "project3.html",
         "description": "A 2D digital recreation of the classic Settlers of Catan board game, built in Unity as a team project. The prototype implements a full hex-grid board, turn-based gameplay, resource trading, building/upgrading, and a development card system, with local multiplayer support for up to 4 players."
     },
     {
@@ -69,21 +67,23 @@ const projectsData = [
                     return;
                 }
 
-                let detailButton;
+                let titleHtml;
+                let actionsHtml = '';
                 if (project.modal) {
-                    detailButton = `<a href="#" class="button" data-modal-target="${project.modal}">More Info</a>`;
-                } else if (project.detailLink) {
-                    detailButton = `<a href="${project.detailLink}" class="button">More Info</a>`;
+                    titleHtml = `<h2>${project.title}</h2>`;
+                    actionsHtml = `
+                    <ul class="actions project-actions">
+                        <li><a href="#" class="button" data-modal-target="${project.modal}">More Info</a></li>
+                    </ul>`;
+                } else if (project.githubLink) {
+                    titleHtml = `<h2><a href="${project.githubLink}" target="_blank" rel="noopener">${project.title}</a></h2>`;
                 } else {
-                    detailButton = `<a href="#" class="button disabled" aria-disabled="true">More Info</a>`;
+                    titleHtml = `<h2>${project.title}</h2>`;
                 }
 
                 article.innerHTML = `
-                    <h2>${project.title}</h2>
-                    <p class="font-geometric">${project.description}</p>
-                    <ul class="actions project-actions">
-                        <li>${detailButton}</li>
-                    </ul>
+                    ${titleHtml}
+                    <p class="font-geometric">${project.description}</p>${actionsHtml}
                 `;
 
                 postsSection.appendChild(article);

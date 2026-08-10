@@ -1,5 +1,7 @@
 
 --------------------------------------------------------------------------------
+Security Analysis of Automotive Remote Keyless Entry (RKE) Systems
+
 1. PROJECT OVERVIEW & GOAL
 --------------------------------------------------------------------------------
 Goal: 
@@ -11,7 +13,7 @@ Target System:
 - Vehicle: 2015 Mini One
 - Key Fob: Standard MINI 3-Button Key Fob
 
-IMG:RF001
+IMG:RF000
 --------------------------------------------------------------------------------
 2. METHODOLOGY & TECH STACK
 --------------------------------------------------------------------------------
