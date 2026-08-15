@@ -79,20 +79,27 @@ const projectsData = [
                 let actionsHtml = '';
                 let hintHtml = '';
                 if (project.githubLink) {
-                    titleHtml = `<h2><a href="${project.githubLink}" target="_blank" rel="noopener">${project.title}</a></h2>`;
+                    const titleLink = project.demoLink || project.githubLink;
+                    titleHtml = `<h2><a href="${titleLink}" target="_blank" rel="noopener">${project.title}</a></h2>`;
                     article.classList.add('clickable-card');
                     article.dataset.githubLink = project.githubLink;
-                    hintHtml = `<span class="github-hint"><i class="fab fa-github"></i> View on GitHub <span aria-hidden="true">&rarr;</span></span>`;
+                    if (project.modal) {
+                        article.dataset.modal = project.modal;
+                    }
+                    if (project.demoLink) {
+                        article.dataset.demoLink = project.demoLink;
+                    }
+                    hintHtml = `<a class="github-hint" href="${project.githubLink}" target="_blank" rel="noopener"><i class="fab fa-github"></i> View on GitHub <span aria-hidden="true">&rarr;</span></a>`;
                 } else {
                     titleHtml = `<h2>${project.title}</h2>`;
                 }
 
                 if (project.modal || project.demoLink) {
                     const modalButton = project.modal
-                        ? `<li><a href="#" class="button" data-modal-target="${project.modal}">Additional Info</a></li>`
+                        ? `<li><a href="#" class="button primary" data-modal-target="${project.modal}">View Details</a></li>`
                         : '';
                     const demoButton = project.demoLink
-                        ? `<li><a href="${project.demoLink}" class="button" target="_blank" rel="noopener">${project.demoLabel || 'Live Demo'}</a></li>`
+                        ? `<li><a href="${project.demoLink}" class="button primary" target="_blank" rel="noopener">${project.demoLabel || 'Live Demo'}</a></li>`
                         : '';
                     actionsHtml = `
                     <ul class="actions project-actions">
@@ -102,7 +109,8 @@ const projectsData = [
 
                 article.innerHTML = `
                     ${titleHtml}
-                    <p class="font-geometric">${project.description}</p>${hintHtml}${actionsHtml}
+                    <p class="font-geometric">${project.description}</p>
+                    <div class="card-footer">${actionsHtml}${hintHtml}</div>
                 `;
 
                 postsSection.appendChild(article);
@@ -153,10 +161,17 @@ const projectsData = [
             return;
         }
 
-        // Click anywhere on a project card (outside of links/buttons) opens its GitHub repo
+        // Click anywhere on a project card (outside of links/buttons) opens its modal,
+        // or falls back to its GitHub repo if there is no modal
         const card = e.target.closest('article.clickable-card');
         if (card && !e.target.closest('a, button')) {
-            window.open(card.dataset.githubLink, '_blank', 'noopener');
+            if (card.dataset.modal) {
+                openModal(card.dataset.modal);
+            } else if (card.dataset.demoLink) {
+                window.open(card.dataset.demoLink, '_blank', 'noopener');
+            } else if (card.dataset.githubLink) {
+                window.open(card.dataset.githubLink, '_blank', 'noopener');
+            }
         }
     });
 
