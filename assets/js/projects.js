@@ -34,6 +34,8 @@ const projectsData = [
     {
         "title": "Mobile Ubiquitous Gym Tracker Application",
         "githubLink": "https://github.com/jeroomeehh/Gym-tracker-Application-Software-",
+        "demoLink": "https://jeroomeehh.github.io/Gym-tracker-Application-Software-/",
+        "demoLabel": "Application Demo",
         "description": "Designed an end-to-end embedded systems solution, and a mobile application that turns a wearable Arduino board into a real-time workout tracker."
     },
     {
