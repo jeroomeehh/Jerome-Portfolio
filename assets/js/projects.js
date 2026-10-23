@@ -4,7 +4,7 @@ const projectsData = [
         "title": "Security Analysis of Automotive Remote Keyless Entry (RKE) Systems",
         "modal": "rke-modal",
         "githubLink": "https://github.com/jeroomeehh/Security-Analysis-of-Automotive-Remote-Keyless-Entry-RKE-Systems",
-        "description": "Black-box RF security analysis of a Mini Cooper's keyless entry system using SDR hardware. Captured and decoded FSK/Manchester-encoded signals, then executed a replay attack that bypassed the 48-bit rolling code system."
+        "description": "Black-box RF security analysis of a Mini Cooper's keyless entry system using SDR hardware. Captured and decoded FSK/Manchester-encoded signals, then demonstrated a replay attack and a RollJam-style attack against its rolling-code system."
     },
     {
         "title": "Network Exploitation & Reverse Engineering on Apple TV",
@@ -13,16 +13,16 @@ const projectsData = [
         "description": "Investigated WPA encryption and MitM attacks on wireless traffic using Wireshark and Bettercap, then SSH'd into a jailbroken Apple TV 4 to extract and reverse-engineer a third-party jailbreak app."
     },
     {
-        "title": "Blockchain-Integrated Smart Home IoT Architecture",
+        "title": "Secure Smart Home IoT Platform (Blockchain)",
         "modal": "smarthome-modal",
         "githubLink": "https://github.com/jeroomeehh/Blockchain-Integrated-Smart-Home-IOT-Architecture",
         "description": "Built a decentralized smart home network using Ethereum smart contracts for tamper-proof IoT data integrity, with a Python MQTT-blockchain bridge and a Web3.js dashboard for live device telemetry."
     },
     {
-        "title": "University Attendance Code Cracker - Python Application",
+        "title": "Authorised Security Test – University Attendance System",
         "modal": "attendance-modal",
         "githubLink": "https://github.com/jeroomeehh/University-Attendance-Code-Cracker",
-        "description": "Built in second year. A Python proof-of-concept demonstrating how weak, short-form authentication (a 4-digit numeric PIN) can be defeated through automated brute-forcing. Built as a white-hat security exercise against my own university attendance system."
+        "description": "An authorised white-hat security exercise against my own university's attendance system, carried out in second year. Identified that a short, static 4-digit numeric PIN with no rate limiting or lockout left the check-in process open to automated attack, and recommended longer time-limited tokens, rate limiting and account lockout as fixes."
     },
     {
         "title": "3D Web-Based Interactive Application",

@@ -383,33 +383,20 @@
 				<div class="modal-box font-geometric">
 					<a href="#" class="modal-close" data-modal-close aria-label="Close">&times;</a>
 
-					<h2>University Attendance Code Cracker - Python Application</h2>
+					<h2>Authorised Security Test – University Attendance System</h2>
 
 					<h4>1. Project Overview &amp; Goal</h4>
-					<p><strong>Goal:</strong> A white-hat security exercise against my own university's attendance portal, demonstrating how a short, static, numeric-only PIN can be automatically brute-forced well within its validity window.</p>
-					<p><strong>How the Attendance System Works:</strong></p>
+					<p><strong>Goal:</strong> An authorised white-hat security exercise against my own university's attendance system, carried out in second year. The aim was to assess whether its check-in mechanism — a short, static, numeric-only PIN — was robust against automated attack, and to recommend appropriate fixes.</p>
+					<p><strong>Context:</strong></p>
 					<ul>
-						<li>The lecturer generates a random 4-digit PIN at the start of class.</li>
-						<li>Students have a 5-minute window to manually enter the PIN into the portal to be marked present.</li>
-						<li>This tool cracked the PIN and recorded attendance in around 30 seconds - well inside that 5-minute window.</li>
+						<li>At the start of each class the lecturer generated a short numeric PIN, which students had a fixed time window to enter in order to be marked present.</li>
+						<li>Testing showed the PIN could be defeated by an automated process well inside that window, meaning attendance could be recorded without the student being present.</li>
 					</ul>
-					<div class="modal-img-placeholder modal-img-small" data-img="AC001"><img src="images/AC001.png" alt="Attendance portal login screen" onerror="this.parentElement.style.display='none'"></div>
 
-					<h4>2. How It Works</h4>
-					<ol>
-						<li>Authenticates a session against the attendance portal using standard login credentials (via <code>requests.Session</code>).</li>
-						<li>Checks the current attendance/lesson status to determine whether a brute-force attempt is even valid (e.g. already recorded, no lesson scheduled, PIN not yet generated).</li>
-						<li>Splits the full PIN range (<code>0000</code>–<code>9999</code>) across multiple worker threads.</li>
-						<li>Each thread iterates its assigned range, submitting PIN guesses as GET requests and inspecting the response for a success indicator (<code>"recorded"</code> in the response body).</li>
-						<li>Stops immediately once a valid PIN is found, reporting the PIN and total time taken.</li>
-					</ol>
-					<div class="modal-img-placeholder modal-img-small" data-img="AC002"><img src="images/AC002.png" alt="Script finished running, PIN cracked" onerror="this.parentElement.style.display='none'"></div>
+					<h4>2. Key Weaknesses Identified</h4>
+					<p>Testing surfaced several design weaknesses in the check-in mechanism: the PIN was drawn from a very small keyspace, there was no rate limiting or request throttling, no account lockout or alerting on repeated failures, and no bot-detection challenge. Together these meant the verification step offered little meaningful protection against an automated attacker.</p>
 
-					<h4>3. Result</h4>
-					<p>The full 4-digit PIN keyspace (10,000 combinations) was exhausted by the multi-threaded brute-force in roughly 30 seconds, and the portal marked attendance as present - over 4 minutes faster than the 5-minute submission window students are given.</p>
-					<div class="modal-img-placeholder modal-img-small" data-img="AC003"><img src="images/AC003.png" alt="Attendance recorded as present" onerror="this.parentElement.style.display='none'"></div>
-
-					<h4>4. Risk Analysis &amp; Findings</h4>
+					<h4>3. Risk Analysis &amp; Findings</h4>
 					<p>This exercise highlights several real security weaknesses in the target system's design:</p>
 					<div class="table-wrapper">
 						<table>
